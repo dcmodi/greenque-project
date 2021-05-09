@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>About</title>
+    <%- include('bootstrap') -%>
+</head>
+
+<body>
+    <%- include('loader') -%>
+    <%- include('header'); -%>
+
+        <!-- ABOUT US -->
+
+        <center class="mt-5">
+            <h3>ABOUT US</h3>
+        </center>
+        <center>
+            <div class="divider"></div>
+        </center>
+        <div class="container mt-5" id="about">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 pt-8">
+                    <img src="./img/b1.png" alt="">
+                    <p class="font">Quality Products</p>
+                    <p class="text-muted">A one-stop-shop for all gardening related requirements, Greenque has more than
+                        1000 products available online for delivery across India saving you numerous messy trips to
+                        various nurseries.</p>
+                </div>
+                <div class="col-lg-6 col-md-6  col-sm-12 pt-8">
+                    <img src="./img/b2.png" alt="">
+                    <p class="font">Perfect Service</p>
+                    <p class="text-muted">Having served a network of 1 million happy plant parents, we can assure you
+                        that once you order a plant from us, you will emerge with your own home-grown veggies!</p>
+                </div>
+                <div class="col-lg-6 col-md-6  col-sm-12 pt-8">
+                    <img src="./img/b3.png" alt="">
+                    <p class="font">100% Natural</p>
+                    <p class="text-muted">
+                        We believe that every space can be made more beautiful with plants! Come, join us in our vision
+                        to make all spaces green and healthy!</p>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 pt-8">
+                    <img src="./img/b4.png" alt="">
+                    <p class="font">Environmental Friendly</p>
+                    <p class="text-muted">We germinated in 2020 from a promise to make ‘green and healthy’ a click away
+                        for all Indians.</p>
+                </div>
+            </div>
+        </div>
+        <!-- END ABOUT US -->
+
+
+        <%- include('footer') -%>
+            <%- include('bootstrapLink') -%>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                <script>
+                    let cart = document.getElementsByClassName('cart')
+                    $(cart).click(function () {
+                        window.location.href = "/cart"
+                    })
+                </script>
+</body>
+
+</html>

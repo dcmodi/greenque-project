@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            font-family: "calibri";
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-4 pt-4" style="border:1px solid rgba(0, 0, 0, 0.644)">
+        <div class="date">
+            <p style="margin-left: 15px;font-size:10px;">
+                <%= d %>
+            </p>
+        </div>
+
+        <center>
+            <h2>
+                <span class="ml-2 mt-1" style="color:rgba(12, 59, 12, 0.835);font-weight: 500;">Greenque</span>
+            </h2>
+            <hr>
+            <h4>Product Report</h4>
+            <table style="width:100%;text-align:center;padding-bottom: 5%;font-size: 12px;" id="tbl">
+                <tr style="background-color: rgba(86, 194, 236, 0.678);font-size: 12px;">
+                    <th style="border-bottom: 1px solid black;padding-top: 10px;font-size: 12px;">
+                        Name
+                    </th>
+                    <th style="border-bottom: 1px solid black;padding-top: 10px;font-size: 12px;">
+                        Categories
+                    </th>
+                    <th style="border-bottom: 1px solid black;padding-top: 10px;font-size: 12px;">
+                        Image
+                    </th>
+                    <th style="border-bottom: 1px solid black;padding-top: 10px;font-size: 12px;">
+                        Price
+                    </th>
+                    <th style="border-bottom: 1px solid black;padding-top: 10px;font-size: 12px;">
+                        Qty
+                    </th>
+                </tr>
+                <% var num=1 %>
+                    <% data.forEach(p=>{ %>
+                        <tr>
+                            <td style="border-bottom: 1px solid black;padding-top: 10px;font-size: 12px;">
+                                <%= p.Product_name %>
+                            </td>
+                            <td style="border-bottom: 1px solid black;padding-top: 10px;font-size: 12px;">
+                                <% p.categories.forEach(c=>{%>
+                                    <%= c %> <br>
+                                        <%})%>
+                            </td>
+                            <td style="border-bottom: 1px solid black;padding-top: 10px;font-size: 12px;">
+                                <%= p.img_src %>
+                            </td>
+                            <td style="border-bottom: 1px solid black;padding-top: 10px;font-size: 12px;">
+                                <%= p.Sale_Price %>
+                            </td>
+                            <td style="border-bottom: 1px solid black;padding-top: 10px;font-size: 12px;">
+                                <%= p.Qty %>
+                            </td>
+                        </tr>
+                        <% num+=1 %>
+                            <%})%>
+
+                                <tr>
+                                    <td style="text-align: right;font-size: 12px;" colspan="7">Total Products : <%= num
+                                            %>
+                                    </td>
+                                </tr>
+            </table>
+        </center>
+    </div>
+
+</body>
+
+</html>
+</body>
+
+</html>

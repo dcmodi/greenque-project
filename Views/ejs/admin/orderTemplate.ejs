@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
+    <style>
+        *{
+            font-family: "calibri";
+        }
+        @media all {
+            @page {
+                @bottom-left {
+                    content: counter(page);
+                }
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container mt-4 pt-4" style="border:1px solid rgba(0, 0, 0, 0.644)">
+        <div class="date">
+            <p style="margin-left: 15px;font-size:10px;">
+                <%= d %>
+            </p>
+        </div>
+
+        <center>
+            <h2>
+                <span class="ml-2 mt-1" style="color:rgba(12, 59, 12, 0.835);font-weight: 500;">Greenque</span>
+            </h2>
+            <hr>
+            <h4>Order Report</h4>
+            <table style="width:100%;text-align:center;padding-bottom: 5%;font-size: 10px;" id="tbl">
+                <tr style="background-color: rgba(86, 194, 236, 0.678);">
+                    <th style="width:25%;font-size: 10px;">
+                        <p style="font-size: 10px;">Order ID</p>
+                    </th>
+                    <th style="width:10%;font-size: 10px;">
+                        <p style="font-size: 10px;">Customer Name</p>
+                    </th>
+                    <th style="width:15%;font-size: 10px;">
+                        <p style="font-size: 10px;">Order Date</p>
+                    </th>
+                    <th style="width:10%;font-size: 10px;">
+                        <p style="font-size: 10px;">Product Name</p>
+                    </th>
+                    <th style="width:10%;font-size: 10px;">
+                        <p style="font-size: 10px;">Qty</p>
+                    </th>
+                    <th style="width:10%;font-size: 10px;">
+                        <p style="font-size: 10px;">Total</p>
+                    </th>
+                    <th style="width:10%;font-size: 10px;">
+                        <p style="font-size: 10px;">Order Status</p>
+                    </th>
+                    <th style="width:10%;font-size: 10px;">
+                        <p style="font-size: 10px;">Payment Status</p>
+                    </th>
+                </tr>
+                
+                <% var num=0,total=0 %>
+                    <% data.forEach(o=>{ %>
+                        <tr>
+                            <td style="border-bottom: 1px solid black;padding-top: 10px;width:25%;font-size: 10px;">
+                                <p style="font-size:10px">
+                                    <%= o._id %>
+                                </p>
+                            </td>
+                            <td style="border-bottom: 1px solid black;padding-top: 10px;width:15%;font-size: 10px;">
+                                <p style="font-size:10px">
+                                    <%= o.user_name %>
+                                </p>
+                            </td>
+                            <td style="border-bottom: 1px solid black;padding-top: 10px;width:15%;font-size: 10px;">
+                                <p style="font-size:10px">
+                                    <%= o.order_date %>
+                                </p>
+                            </td>
+                            <td style="border-bottom: 1px solid black;padding-top: 10px;width:15%;font-size: 10px;">
+                                <% o.products.forEach(p=>{%>
+                                    <p style="font-size:10px">
+                                        <%= p %>
+                                    </p>
+                                    <%})%>
+                            </td>
+                            <td style="border-bottom: 1px solid black;padding-top: 10px;width:10%;font-size: 10px;">
+                                <% o.qty.forEach(q=>{%>
+                                    <p style="font-size:10px">
+                                        <%= q %>
+                                    </p>
+                                    <%})%>
+                            </td>
+                            <td style="border-bottom: 1px solid black;padding-top: 10px;width:10%;font-size: 10px;">
+                                <p style="font-size:10px">&#x20b9; <%= o.amount %>
+                                </p>
+                                <% total +=o.amount %>
+                            </td>
+                            <td style="border-bottom: 1px solid black;padding-top: 10px;width:10%;font-size: 10px;">
+                                <p style="font-size:10px">
+                                    <%= o.delivery %>
+                                </p>
+                            </td>
+                            <td style="border-bottom: 1px solid black;padding-top: 10px;width:10%;font-size: 10px;">
+                                <p style="font-size:10px">
+                                    <%= o.payment %>
+                                </p>
+                            </td>
+                        </tr>
+                        <% num+=1 %>
+                            <% }) %>
+                                <tr>
+                                    <td style="text-align: right;margin-top: 20px;font-size: 10px;" colspan="7">
+                                        Total Orders : <%= num %>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right;margin-top: 20px;font-size: 10px;" colspan="7">
+                                        Total Purchase : &#x20b9; <%= total %>
+                                    </td>
+                                </tr>
+            </table>
+        </center>
+    </div>
+
+</body>
+
+</html>

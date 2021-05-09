@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('bootstrap') -%>
+        <style>
+            * {
+
+                font-family: "calibri";
+
+            }
+        </style>
+
+</head>
+
+<body>
+    <div class="container mt-4 pt-4" style="border:1px solid rgba(0, 0, 0, 0.644)">
+        <div class="date">
+            <p style="margin-left: 15px;font-size:10px;">
+                <%= d %>
+            </p>
+        </div>
+        <center>
+            <h2>
+                <span class="ml-2 mt-1" style="color:rgba(12, 59, 12, 0.835);font-weight: 500;">Greenque</span>
+            </h2>
+            <hr>
+
+            <h4>Customer Report</h4>
+            <table style="width:100%;text-align:center;padding-bottom: 5%;font-size: 12px;" id="tbl">
+                <tr style="background-color: rgba(86, 194, 236, 0.678);">
+                    <th style="border-bottom: 1px solid black;padding-top: 10px;">
+                        Name
+                    </th>
+                    <th style="border-bottom: 1px solid black;padding-top: 10px;">
+                        Email
+                    </th>
+                    <th style="border-bottom: 1px solid black;padding-top: 10px;">
+                        Phone No.
+                    </th>
+                </tr>
+                <% data.forEach(d=>{%>
+                    <tr>
+                        <td style="border-bottom: 1px solid black;padding-top: 10px;" class="pt-2">
+                            <%= d.name %>
+                        </td>
+                        <td style="border-bottom: 1px solid black;padding-top: 10px;" class="pt-2">
+                            <%= d.email %>
+                        </td>
+                        <td style="border-bottom: 1px solid black;padding-top: 10px;" class="pt-2">
+                            <%= d.phone_no %>
+                        </td>
+                    </tr>
+                    <%})%>
+                        <tr>
+                            <td colspan="3" style="padding-top: 10px;text-align: right;">
+                                Total Customers : <%= Object.keys(data).length %>
+                            </td>
+                        </tr>
+            </table>
+
+        </center>
+
+    </div>
+</body>
+
+</html>

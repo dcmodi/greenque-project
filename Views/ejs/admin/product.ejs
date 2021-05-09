@@ -1,0 +1,244 @@
+<html>
+
+<head>
+    <title>
+        Product List
+    </title>
+    <%- include('bootstrap') -%>
+</head>
+
+<body>
+    <%- include('header') -%>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-2">
+                    <%- include('sidebar') -%>
+                </div>
+                <div class="col-10">
+                    <div class="container-fluid mt-3">
+                        <h5>Products</h5>
+                    </div>
+                    <div class="container-fluid mt-3 underline">
+
+                    </div>
+                    <div class="container-fluid mt-2">
+                        <div class="row">
+                            <div class="col-9"></div>
+                            <div class="col-1">
+
+                            </div>
+                            <div class="col-2">
+                                <h4 style="float: right;">
+
+                                    <i class="fa fa-plus p-2" aria-hidden="true" id="plus" onclick="displayForm()"></i>
+
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product Form-->
+                    <div class="container-fluid mt-3 parentProduct">
+                        <form action="/admin/ManageProduct" method="POST" autocomplete="off"
+                            enctype="multipart/form-data" id="productForm" class="productForm" onsubmit="return validateForm()">
+                            
+                            <table class="productTable">
+                                
+                                <tr>
+                                    <td>
+                                        Product Name:
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="Product_name"
+                                            placeholder=" Product Name" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <div class="text-danger">
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Category :
+                                    </td>
+                                    <td>
+                                        <select class="form-control categoryList" name="category" id="dropdown" multiple>
+                                            <% for(var i=0; i < Object.keys(cat).length; i++){%>
+                                                <option value="<%= cat[i].category_name %>">
+                                                    <%= cat[i].category_name %>
+                                                </option>
+                                                <%}%>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <div class="text-danger">
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Image :
+                                    </td>
+                                    <td>
+                                        <input type="file" class="form-control" name="img" placeholder="Image Source"
+                                            value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <div class="text-danger">
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Sale Price :
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="Sale_Price"
+                                            placeholder=" Sale Price" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <div class="text-danger">
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Qty
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="Qty" placeholder=" Quantity"
+                                            value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <div class="text-danger">
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="text-align:center;">
+                                        <button type="submit" class="btn btn-info"><i
+                                                class="fa fa-database"></i>Submit</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                    <!--End-->
+                    <div class="container-fluid mt-2">
+                        <div class="row pt-3 pb-3" style="background-color:rgba(82, 145, 226, 0.233)">
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <h6>
+                                    <b> Name </b>
+
+                                </h6>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <h6>
+                                    <b>Categories</b>
+                                </h6>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <h6>
+                                    <b>
+                                        Image
+                                    </b>
+
+                                </h6>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <h6>
+                                    <b>
+                                        Price
+                                    </b>
+                                </h6>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <h6>
+                                    <b>
+                                        Qty
+                                    </b>
+                                </h6>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <h6>
+                                    <b>
+                                        Action
+                                    </b>
+                                </h6>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <% list.forEach(li=>{ %>
+                        <div class="container-fluid mt-3" id="backcolor">
+
+                            <div class="row pt-2" style="padding:5px">
+                                <input type="hidden" value="<%= li._id %>">
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 products">
+                                    <%= li.Product_name %>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                    <table>
+                                        <% for(var i=0 ; i < li.categories.length ; i++){ %>
+                                            <tr>
+                                                <td>
+                                                    <%= li.categories[i] %>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+
+                                    </table>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                    <%= li.img_src %>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                    <b>
+                                        <%= li.Sale_Price %>
+                                    </b>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                    <b>
+                                        <%= li.Qty %>
+                                    </b>
+                                </div>
+                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                    
+                                        <i class="fa fa-pencil fa-lg p-2 text-primary" aria-hidden="true" id="icon" onclick="updateForm(this)"></i>
+                                    
+                                </div>
+                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                    <a href="/admin/ManageProduct/delete/<%= li._id %>"
+                                        onclick="return confirm('Are you sure you want to delete this record?');">
+                                        <i class="fa fa-trash fa-lg p-2" aria-hidden="true" class="delete"
+                                            id="icon"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <% })%>
+                </div>
+            </div>
+        </div>
+
+
+        <script type="text/javascript" src="/.././js/product.js" defer></script>
+</body>
+
+</html>

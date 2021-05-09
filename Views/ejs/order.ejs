@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Order</title>
+    <%- include('bootstrap') -%>
+</head>
+
+<body>
+    <%- include('loader') -%>
+    <%- include('header'); -%>
+                <% if(Object.keys(order).length==0 || typeof(order) == "undefined"){ %>
+                    <div class="container mt-5 pt-5" style="min-height: 250px;">
+                        <center>
+                            <a href="/shop" class="btn bg-success text-white">Continue Shopping</a>
+                        </center>
+                    </div>
+                    <% }%>
+                    <% if(Object.keys(order).length!=0){ %>
+                        <div class="container-fluid mt-3">
+                            <div class="row">
+                                <div class="col-3">
+                                    <h6 style="border-bottom: 1px solid black;" class="pb-1">
+                                        Order Id
+                                    </h6>
+                                </div>
+                                <div class="col-2">
+                                    <h6 style="border-bottom: 1px solid black;" class="pb-1">Order Date</h6>
+                                </div>
+                                <div class="col-2">
+                                    <h6 style="border-bottom: 1px solid black;" class="pb-1">Products</h6>
+                                </div>
+                                <div class="col-1">
+                                    <h6 style="border-bottom: 1px solid black;" class="pb-1">Amount</h6>
+                                </div>
+                                <div class="col-2">
+                                    <h6 style="border-bottom: 1px solid black;" class="pb-1">Delivery Status</h6>
+                                </div>
+                                <div class="col-2">
+                                    <h6 style="border-bottom: 1px solid black;" class="pb-1">Payment Status</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container-fluid mt-3" style="min-height: 250px;">
+                            <% for(var i=0 ; i < order.length ; i++){ %> 
+                                <div class="row pt-2 pb-2 mb-2" style="border-bottom: 1px solid black;" >
+                                    
+                                    <div class="col-3"><%= order[i].order_ID %></div>
+                                    <div class="col-2"><%= order[i].order_date %></div>
+                                    <div class="col-2">
+                                        <table>
+                                        <% for(var j=0 ; j < order[i].products.items.length ; j++){ %> 
+                                            
+                                                <tr>
+                                                    <td>
+                                                        <%= order[i].products.items[j].name %>
+                                                    </td>
+                                                </tr>
+                                            
+                                        <%} %>
+                                    </table>
+                                    </div>
+                                    <div class="col-1">
+                                        <%= order[i].products.totalPrice %>
+                                    </div>
+                                    <div class="col-2">
+                                        <%= order[i].delivery_id.delivery_status %>
+                                    </div>
+                                    <div class="col-2">
+                                        <%= order[i].payment_id.payment_status %>
+                                    </div>
+                            
+                            </div>
+                            <% }%>
+                        </div>
+                        <% }%>
+
+                        <%- include('footer'); -%>
+                            <%- include('bootstrapLink'); -%>
+                                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                                <script>
+                                    let cart = document.getElementsByClassName('cart')
+                                    $(cart).click(function () {
+                                        window.location.href = "/cart"
+                                    })
+                                </script>
+</body>
+
+</html>
